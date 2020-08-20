@@ -26,7 +26,7 @@ import {Panel} from '../../model/common/panel';
       </div>
     </div>
     <div *ngIf="panel.label === 'Confirmation'">
-    <confirmation-panel></confirmation-panel>
+    <confirmation-panel [form]="form"></confirmation-panel>
     </div>
     <!-- </form>-->`,
 })

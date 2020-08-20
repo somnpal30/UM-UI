@@ -1,1 +1,18 @@
-<p>confirmation-panel works!</p>
+<p class="font-weight-bold">Review enter details & confirm</p>
+<hr>
+
+<!--<div *ngFor="let panel of panels">
+  <div *ngIf="panel.label != 'Confirmation'" class="container">
+    <p class="font-weight-bold">{{panel.label}}</p>
+    <div class="alert alert-dark">
+      <div class="col-2" *ngFor="let section of panel.sections">
+        <div *ngFor="let field of section.fields" >
+          {{field.label}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+{{dataService.displayData | json}}
+
