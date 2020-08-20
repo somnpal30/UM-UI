@@ -1,0 +1,15 @@
+import { OnInit } from '@angular/core';
+import { Field } from '../../model/common/field';
+import { FormGroup } from '@angular/forms';
+
+export class BaseComponent implements OnInit
+{
+  field: Field;
+  group: FormGroup;
+
+ constructor() {
+ }
+
+ ngOnInit() {
+ }
+}

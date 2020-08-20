@@ -1,0 +1,26 @@
+<div class="container">
+  <p>dynamic-form works!</p>
+  <hr>
+  <form>
+    <div *ngFor="let section of sections" class="form-group">
+
+      <p>{{section.label}}</p>
+
+      <div *ngFor="let field of section.fields ; let i = index; let even = even">
+
+        <div class="row" *ngIf="even">
+          <div class="col-6">
+            <label>{{field.label}}</label>
+            <input type="{{field.type}}" class="form-control" name="{{field.name}}" >
+          </div>
+          <div class="col-6" *ngIf="section.fields[i +1].label">
+            <label>{{section.fields[i +1].label}}</label>
+            <input type="{{section.fields[i+1].type}}" class="form-control" name="{{section.fields[i+1].name}}">
+          </div>
+        </div>
+      </div>
+
+      <hr>
+    </div>
+  </form>
+</div>

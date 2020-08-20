@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.example-form-field {
+  width: 200px;
+}
+
+.field-full-width {
+  width: 100%;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #007bff !important;
+}
+
+.mat-form-field-infix {
+  padding: .5em 0 1em 0 !important;
+}
+
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: lightskyblue;
+  border-width: 10px !important;
+ }
+
+mat-datepicker-toggle {
+  color:  #007bff !important;
+}
+
+.mat-datepicker-content {
+  color:  #007bff !important;
+}
+.mat-calendar-table{
+  border-color: #007bff;
+
+}
+.mat-calendar-body-today{
+  color: #007bff;
+}
+.mat-calendar-body-label{
+  color: #007bff !important;
+}
+button:focus {
+  outline: none;
+}
