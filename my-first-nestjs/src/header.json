@@ -1,0 +1,14 @@
+[
+  {
+	"userType" : "Administrator",
+	"roles" : ["System Admin","Business Admin","Customer Care Admin"]
+  },
+  {
+	"userType" : "Business",
+	"roles" : ["Corporate","Employee","Agent","Wholesaler","Market","Biller"]
+  },
+  {
+	"userType" : "Subscriber",
+	"roles" : []
+  }
+]

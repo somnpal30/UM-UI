@@ -1,0 +1,323 @@
+[
+  {
+    "label": "Basic",
+    "sections": [
+      {
+        "label": "Personal Information",
+        "fields": [
+          {
+            "label": "Company Name",
+            "type": "input",
+            "inputType": "text",
+            "apiGroup":"userInformation",
+            "apiSection":"basicInformation",
+            "name": "companyName",
+            "id": "companyName",
+            "value": "",
+            "isEditable": true,
+            "validations": [
+              {
+                "name": "required",
+                "validator": "required",
+                "message": "You Must enter Company Name"
+              },
+              {
+                "name": "pattern",
+                "validator": "^[a-zA-Z]+$",
+                "message": "Accept only text"
+              }
+            ]
+          },
+          {
+            "label": "Company Registration Number",
+            "type": "input",
+            "inputType": "text",
+            "name": "companyRegNumber",
+            "apiGroup":"userInformation",
+           "apiSection":"basicInformation",
+            "id": "companyRegNumber",
+            "value": "",
+            "isEditable": true,
+            "validations": [
+              {
+                "name": "required",
+                "validator": "required",
+                "message": "Company Registration Number is Must"
+              },
+              {
+                "name": "pattern",
+                "validator": "^[a-zA-Z]+$",
+                "message": "Accept only text"
+              }
+            ]
+          },
+          {
+            "label": "Login ID",
+            "type": "input",
+            "inputType": "text",
+            "name": "loginid",
+            "id": "loginid",
+            "apiGroup":"userInformation",
+            "apiSection":"basicInformation",
+            "value": "",
+            "isEditable": true,
+            "validations": [
+              {
+                "name": "required",
+                "validator": "required",
+                "message": "Login Id is Required"
+              },
+              {
+                "name": "pattern",
+                "validator": "^[a-zA-Z]+$",
+                "message": "Accept only text"
+              }
+            ]
+          },
+          {
+            "label": "Date of Joining",
+            "type": "date",
+            "name": "dateOfJoining",
+            "id": "dateOfJoining",
+            "apiGroup":"userInformation",
+            "apiSection":"basicInformation",
+            "validations": [
+              {
+                "name": "required",
+                "validator": "required",
+                "message": "Date of Joining Required"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Enter Company Location",
+        "fields": [
+          {
+            "label": "Address Line 1",
+            "type": "input",
+            "inputType": "text",
+            "name": "add21",
+            "id": "add1",
+            "value": "",
+            "apiGroup":"userInformation",
+            "apiSection":"addressInformation",
+            "validations": [
+              {
+                "name": "required",
+                "validator": "required",
+                "message": "Address Line 1 Required"
+              }
+            ]
+          },
+          {
+            "label": "Address Line 2 (Optional)",
+            "type": "input",
+            "inputType": "text",
+            "name": "add2",
+            "id": "add2",
+            "apiGroup":"userInformation",
+            "apiSection":"addressInformation",
+            "value": ""
+          },
+          {
+            "label": "City",
+            "type": "input",
+            "inputType": "text",
+            "name": "city",
+            "id": "city",
+            "apiGroup":"userInformation",
+            "apiSection":"addressInformation",
+            "value": "Bangalore"
+          },
+          {
+            "label": "State",
+            "type": "input",
+            "inputType": "text",
+            "name": "state",
+            "id": "state",
+            "apiGroup":"userInformation",
+            "apiSection":"addressInformation",
+            "value": ""
+          },
+          {
+            "label": "Country",
+            "type": "select",
+            "name": "country",
+            "id": "country",
+            "apiGroup":"userInformation",
+            "apiSection":"addressInformation",
+            "value": "US",
+            "options": [
+              {
+                "key" : "IN",
+                "value" : "India"
+              },
+              {
+                "key" : "US",
+                "value" : "United States"
+              },
+              {
+                "key" : "UK",
+                "value" : "United Kingdom"
+              },
+              {
+                "key" : "UAE",
+                "value" : "United Arab Emirates"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "KYC",
+    "sections": [
+      {
+        "label": "Provide KYC Information",
+        "fields": [
+          {
+            "label":"KYC Id Type",
+            "type":"select",
+            "enumType":"PROOF_TYPE",
+            "apiGroup":"userInformation",
+            "apiGroupType":"array",
+            "apiSection":"kycInformation",
+            "apiSectionType":"",
+            "id":"kycIdType",
+            "name":"kycIdType",
+            "value":"",
+            "options":[
+              {
+                "key" : "AADHAR",
+                "value" : "Aadhar"
+              },
+              {
+                "key" : "PAN",
+                "value" : "PAN"
+              },
+              {
+                "key" : "PASSPORT",
+                "value" : "Passport"
+              }
+            ],
+            "validations":[
+              {
+                "name":"required",
+                "validator":"required",
+                "message":"KYC Id Type is required"
+              }
+            ]
+          },
+          {
+            "label":"KYC Id Number",
+            "type":"input",
+            "enumType":"PROOF_TYPE",
+            "apiGroup":"userInformation",
+            "apiGroupType":"array",
+            "apiSection":"kycInformation",
+            "apiSectionType":"",
+            "id":"kycIdValue",
+            "name":"kycIdValue",
+            "value":"",
+            "validations":[
+              {
+                "name":"required",
+                "validator":"required",
+                "message":"Document Number is required"
+              }
+            ]
+          },
+          {
+            "label":"City Issued In",
+            "type":"input",
+            "enumType":"PROOF_TYPE",
+            "apiGroup":"userInformation",
+            "apiGroupType":"array",
+            "apiSection":"kycInformation",
+            "apiSectionType":"",
+            "id":"kycIdIssuePlace",
+            "name":"kycIdIssuePlace",
+            "value":"",
+            "validations":[
+              {
+                "name":"required",
+                "validator":"required",
+                "message":"City is required"
+              }
+            ]
+          },
+          {
+            "label":"Country Issued In",
+            "type":"input",
+            "enumType":"PROOF_TYPE",
+            "apiGroup":"userInformation",
+            "apiGroupType":"array",
+            "apiSection":"kycInformation",
+            "apiSectionType":"",
+            "id":"kycIdIssueCountry",
+            "name":"kycIdIssueCountry",
+            "value":"",
+            "validations":[
+              {
+                "name":"required",
+                "validator":"required",
+                "message":"Country is required"
+              }
+            ]
+          },
+          {
+            "label":"Date of Issue",
+            "type":"date",
+            "enumType":"PROOF_TYPE",
+            "apiGroup":"userInformation",
+            "apiGroupType":"array",
+            "apiSection":"kycInformation",
+            "apiSectionType":"",
+            "id":"kycIdIssueDate",
+            "name":"kycIdIssueDate",
+            "value":"",
+            "validations":[]
+          },
+          {
+            "label":"Valid From",
+            "type":"input",
+            "enumType":"PROOF_TYPE",
+            "apiGroup":"userInformation",
+            "apiGroupType":"array",
+            "apiSection":"kycInformation",
+            "apiSectionType":"",
+            "id":"kycIdValidFrom",
+            "name":"kycIdValidFrom",
+            "value":"",
+            "validations":[]
+          },
+          {
+            "label":"Valid To",
+            "type":"input",
+            "enumType":"PROOF_TYPE",
+            "apiGroup":"userInformation",
+            "apiGroupType":"array",
+            "apiSection":"kycInformation",
+            "apiSectionType":"",
+            "id":"kycIdValidTo",
+            "name":"kycIdValidTo",
+            "value":"",
+            "validations":[]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Hierarchy"
+  },
+  {
+    "label": "Profile"
+  },
+  {
+    "label": "Confirmation"
+  }
+]
