@@ -4,7 +4,6 @@ import {Field} from '../../model/common/field';
 import {InputComponent} from '../../component/dynamic-fields/input/input.component';
 import {SelectComponent} from '../../component/dynamic-fields/select/select.component';
 import {DateComponent} from '../../component/dynamic-fields/date/date.component';
-import {UserInformation} from "../../model/business/userInformation";
 
 
 const componentMapper = {

@@ -26,4 +26,9 @@ export class HeaderserviceComponent implements OnInit {
   loadComponents = ():Observable<Panel[]> =>{
     return this._https.get<Panel[]>('http://localhost:3000/components');
   }
+
+  loadSfmComponents = ():Observable<any> => {
+    return this._https.get<any>('http://localhost:3000/sfm-response');
+  }
+
 }

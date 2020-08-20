@@ -1,20 +1,21 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Section } from '../../model/common/section';
-import { Validation } from '../../model/common/validation';
-import { Panel } from '../../model/common/panel';
-import { HeaderserviceComponent } from '../../service/headerservice/headerservice.component';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Section} from '../../model/common/section';
+import {Validation} from '../../model/common/validation';
+import {Panel} from '../../model/common/panel';
+import {HeaderserviceComponent} from '../../service/headerservice/headerservice.component';
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {UserInformation} from "../../model/business/userInformation";
+import {CommonUtils} from "../../utility/common";
 
 @Component({
   selector: 'dynamic-stepper',
- templateUrl: 'dynamic-stepper.component.html',
+  templateUrl: 'dynamic-stepper.component.html',
   styles: [],
-  providers:[
+  providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { showError: true }
+      useValue: {showError: true}
     }
   ]
 })
@@ -24,25 +25,40 @@ export class DynamicStepperComponent implements OnInit {
   globalFormGroup: FormGroup;
 
   userInformation: UserInformation;
+  respMap: Map<string, string>;
 
   constructor(private _formBuilder: FormBuilder, private _headerService: HeaderserviceComponent) {
+
   }
 
   ngOnInit(): void {
+
     this.userInformation = new UserInformation();
     this.globalFormGroup = this._formBuilder.group({});
 
-    this._headerService.loadComponents().subscribe(
-      result => {
-        this.panelList = result;
-        this.panelList.forEach((panel) => this.createControl(panel.sections, panel.label));
-        //console.log(this.globalFormGroup.controls['step0'])
-      },
-      error => {
-        console.log(error);
-      },
-    );
 
+    this._headerService.loadSfmComponents().subscribe(
+      resp => {
+        this.respMap = new Map<string, string>()
+        this.parseObject(resp);
+        this._headerService.loadComponents().subscribe(
+          resp2 => {
+            this.panelList = resp2;
+            this.panelList.forEach((panel) => this.createControl(panel.sections, panel.label));
+          }
+        )
+      })
+
+  }
+
+  parseObject(obj) {
+    for (var key in obj) {
+      this.respMap.set(key, obj[key])
+      //console.log("key: " + key + ", value: " + obj[key])
+      if (obj[key] instanceof Object) {
+        this.parseObject(obj[key]);
+      }
+    }
   }
 
 
@@ -52,10 +68,9 @@ export class DynamicStepperComponent implements OnInit {
       const formGroup: FormGroup = this._formBuilder.group({});
       sections.forEach(section => {
           section.fields.forEach(field => {
-            //const key = field.apiGroup + "-" + field.apiSection + "-"  + field.name ;
-              //console.log(key)
-              const key = field.name
-              const control = this._formBuilder.control(field.value, this.bindValidations(field.validations || []));
+              const key = CommonUtils.generateControlKey(field);
+              const val = this.respMap.get(key)
+              const control = this._formBuilder.control(val, this.bindValidations(field.validations || []));
               formGroup.addControl(key, control);
             },
           );
@@ -88,7 +103,7 @@ export class DynamicStepperComponent implements OnInit {
   onSubmit = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(this.globalFormGroup.get("Basic").value);
+    console.log(this.globalFormGroup.value);
     //console.log(this.userInformation)
   };
 

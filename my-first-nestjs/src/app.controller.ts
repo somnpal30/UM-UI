@@ -5,6 +5,7 @@ import { Response } from 'express';
 import * as BODY_Response from './component.json';
 import * as HEADER_Response from './header.json';
 import * as VIEW_Response from './view.json';
+import * as SFM_Response from './response.json';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -30,5 +31,11 @@ export class AppController {
   viewComponent(@Res() res: Response):any{
     console.log("getting component .........." + Date.now())
     res.status(HttpStatus.OK).json(VIEW_Response);
+  }
+
+  @Get("/sfm-response")
+  sftRespoonse(@Res() res: Response):any{
+    console.log("getting component .........." + Date.now())
+    res.status(HttpStatus.OK).json(SFM_Response);
   }
 }

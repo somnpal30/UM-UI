@@ -1,6 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Field } from '../../../model/common/field';
 import { FormGroup } from '@angular/forms';
+import {CommonUtils} from "../../../utility/common";
 
 @Component({
   selector: 'app-date',
@@ -8,12 +9,12 @@ import { FormGroup } from '@angular/forms';
     <label for="{{field.id}}">{{field.label}}</label>
     <br>
     <mat-form-field appearance="outline"  class="field-full-width" [formGroup]="group">
-      <input matInput [matDatepicker]="picker"  id="{{field.id}}" [formControlName]="field.name">
+      <input matInput [matDatepicker]="picker"  id="{{field.id}}" [formControlName]="key">
       <mat-datepicker-toggle matSuffix [for]="picker">
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
-        <mat-error *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</mat-error>
+        <mat-error *ngIf="group.get(key).hasError(validation.name)">{{validation.message}}</mat-error>
       </ng-container>
     </mat-form-field>
   `,
@@ -24,9 +25,11 @@ import { FormGroup } from '@angular/forms';
 export class DateComponent implements OnInit {
   field: Field;
   group: FormGroup;
+  key: string
   constructor() { }
 
   ngOnInit(): void {
+    this.key = CommonUtils.generateControlKey(this.field)
   }
 
 }
