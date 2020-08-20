@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderserviceComponent } from '../../service/headerservice/headerservice.component';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-bodycomponent',
@@ -13,20 +12,10 @@ export class BodycomponentComponent implements OnInit {
   public panels;
   public map;
 
-  constructor(private _headerService: HeaderserviceComponent) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this._headerService.loadComponents().subscribe(
-      result => {
-        this.panels = result;
-      },
-      error => {
-        console.log(error);
-      },
-    );
-
-
-  }
+   }
 
 }

@@ -3,10 +3,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Section} from '../../model/common/section';
 import {Validation} from '../../model/common/validation';
 import {Panel} from '../../model/common/panel';
-import {HeaderserviceComponent} from '../../service/headerservice/headerservice.component';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {UserInformation} from "../../model/business/userInformation";
 import {CommonUtils} from "../../utility/common";
+import {CommonserviceService} from "../../service/commonservice/commonservice.service";
 
 @Component({
   selector: 'dynamic-stepper',
@@ -27,7 +27,7 @@ export class DynamicStepperComponent implements OnInit {
   userInformation: UserInformation;
   respMap: Map<string, string>;
 
-  constructor(private _formBuilder: FormBuilder, private _headerService: HeaderserviceComponent) {
+  constructor(private _formBuilder: FormBuilder, private commonserviceService: CommonserviceService) {
 
   }
 
@@ -37,11 +37,11 @@ export class DynamicStepperComponent implements OnInit {
     this.globalFormGroup = this._formBuilder.group({});
 
 
-    this._headerService.loadSfmComponents().subscribe(
+    this.commonserviceService.loadSfmComponents().subscribe(
       resp => {
         this.respMap = new Map<string, string>()
         this.parseObject(resp);
-        this._headerService.loadComponents().subscribe(
+        this.commonserviceService.loadComponents().subscribe(
           resp2 => {
             this.panelList = resp2;
             this.panelList.forEach((panel) => this.createControl(panel.sections, panel.label));

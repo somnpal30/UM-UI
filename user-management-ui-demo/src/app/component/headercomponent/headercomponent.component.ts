@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderserviceComponent } from '../../service/headerservice/headerservice.component';
-import { Header } from '../../model/header/header';
+import {Component, OnInit} from '@angular/core';
+import {Header} from '../../model/header/header';
+import {CommonserviceService} from "../../service/commonservice/commonservice.service";
 
 @Component({
   selector: 'app-headercomponent',
@@ -12,11 +12,11 @@ export class HeadercomponentComponent implements OnInit {
   public roles: string[];
   public selectedNavIndex;
 
-  constructor(private headerService: HeaderserviceComponent) {
+  constructor(private commonserviceService: CommonserviceService) {
   }
 
   ngOnInit(): void {
-    this.headerService.loadHeaderData().subscribe(
+    this.commonserviceService.loadHeaderData().subscribe(
       data => {
         this.headers = data;
         this.selectedNavIndex = 0

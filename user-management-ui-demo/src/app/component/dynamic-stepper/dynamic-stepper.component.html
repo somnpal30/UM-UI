@@ -4,8 +4,7 @@
 
     <mat-step *ngFor="let panel of panelList ;let i = index" label="{{panel.label}}"
               [stepControl]="globalFormGroup.controls[panel.label]" errorMessage="Missing Mandatory Fields">
-      <dynamic-form [panel]="panel" [stepper]="stepper"
-                    [selectedFormGroup]="globalFormGroup.controls[panel.label]" ></dynamic-form>
+      <dynamic-form [panel]="panel"  [form]="globalFormGroup"></dynamic-form>
     </mat-step>
   </mat-horizontal-stepper>
   <div class="margin-top">
