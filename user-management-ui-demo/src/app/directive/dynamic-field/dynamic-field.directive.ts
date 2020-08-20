@@ -9,8 +9,8 @@ import {UserInformation} from "../../model/business/userInformation";
 
 const componentMapper = {
   input: InputComponent,
-  // select: SelectComponent,
-  // date: DateComponent,
+  select: SelectComponent,
+  date: DateComponent,
 };
 
 @Directive({

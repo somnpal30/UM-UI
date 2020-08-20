@@ -9,24 +9,7 @@ import {UserInformation} from "../../model/business/userInformation";
 
 @Component({
   selector: 'dynamic-stepper',
-  template: `
-    <form [formGroup]="globalFormGroup" id="form">
-
-      <mat-horizontal-stepper [linear]="false" #stepper labelPosition="bottom">
-
-        <mat-step *ngFor="let panel of panelList ;let i = index" label="{{panel.label}}"
-                  [stepControl]="globalFormGroup.controls[panel.label]" errorMessage="Missing Mandatory Fields">
-          <dynamic-form [panel]="panel" [stepper]="stepper"
-                        [selectedFormGroup]="globalFormGroup.controls[panel.label]" [userInformation]="userInformation" ></dynamic-form>
-        </mat-step>
-      </mat-horizontal-stepper>
-      <div class="margin-top">
-        <button type="submit" mat-raised-button color="primary" (click)="onSubmit($event)">save</button>&nbsp;&nbsp;&nbsp;
-        <!-- <button type="reset" mat-raised-button color="primary" (click)="this.globalFormGroup.reset()">reset</button>&nbsp;&nbsp;&nbsp;-->
-        <button type="button" mat-raised-button color="primary" (click)="next()">next</button>&nbsp;&nbsp;&nbsp;
-      </div>
-    </form>
-  `,
+ templateUrl: 'dynamic-stepper.component.html',
   styles: [],
   providers:[
     {
@@ -69,8 +52,9 @@ export class DynamicStepperComponent implements OnInit {
       const formGroup: FormGroup = this._formBuilder.group({});
       sections.forEach(section => {
           section.fields.forEach(field => {
-            const key = field.apiGroup + "-" + field.apiSection + "-"  + field.name ;
+            //const key = field.apiGroup + "-" + field.apiSection + "-"  + field.name ;
               //console.log(key)
+              const key = field.name
               const control = this._formBuilder.control(field.value, this.bindValidations(field.validations || []));
               formGroup.addControl(key, control);
             },
