@@ -1,0 +1,12 @@
+.form-control{
+  border-width: 0.5px;
+  border-radius: 0px;
+}
+
+.form-control-left{
+  border-left-width: 0px;
+}
+
+.form-control-right{
+  border-right-width: 0px;
+}

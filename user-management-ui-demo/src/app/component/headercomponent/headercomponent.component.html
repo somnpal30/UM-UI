@@ -1,0 +1,15 @@
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+  <p class="font-weight-bold"> Select user type </p>
+  <ul class="nav nav-pills nav-fill">
+    <li *ngFor="let headerVal of headers; let i = index" class="nav-item ">
+      <a class="nav-link" [ngClass]="(selectedNavIndex===i) ? 'active' : '' "   href="#" (click)="updateRole(i)">{{headerVal.userType}}</a>
+    </li>
+  </ul>
+  <div class="spacer"></div>
+  <div *ngIf="roles?.length > 0">
+  <p class="font-weight-bold"> Select user role </p>
+    <label class="radio-inline" *ngFor="let role of roles ;  index as i">
+      <input type="radio" name="role"  [checked]="i===0" value={{role}} (click)="saveSelectedOption(i)">&nbsp;&nbsp;{{role}}&nbsp;&nbsp;&nbsp;&nbsp;
+    </label>
+  </div>
+</div>
