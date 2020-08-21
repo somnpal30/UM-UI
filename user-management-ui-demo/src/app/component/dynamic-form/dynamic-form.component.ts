@@ -8,10 +8,11 @@ import {Panel} from '../../model/common/panel';
   styleUrls: [],
   template: `
     <!-- <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)" >-->
-    <div *ngIf="panel.label != 'KYC' &&   panel.label !== 'Confirmation'">
+    <div *ngIf="panel.label !== 'Confirmation'">
       <div *ngFor="let section of panel.sections">
-        <p class="font-weight-bold">{{section.label}}</p><div class="row">
-            <div *ngFor="let field of section.fields" class="col-6">
+        <p class="font-weight-bold">{{section.label}}</p>
+        <div class="row">
+            <div *ngFor="let field of section.fields" [className]="field.label.indexOf('Valid') != -1 ? 'col' : 'col-6'" >
                 <ng-container dynamicField [field]="field" [group]="selectedFormGroup">
                 </ng-container>
             </div>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Section} from '../../model/common/section';
 import {Validation} from '../../model/common/validation';
 import {Panel} from '../../model/common/panel';
@@ -71,34 +71,29 @@ export class DynamicStepperComponent implements OnInit {
     }
   }
 
-/*  parseSfmResponse(obj, map: Map<string, string>, mapKey:string){
 
-    for (var key in obj) {
-      if (obj[key] instanceof Object) {
-        const localkey = mapKey + key + "-"
-        //console.log(localkey)
-        this.parseSfmResponse(obj[key], map,localkey)
-      }else {
-        const tempMapKey = mapKey+ key;
-        map.set(tempMapKey, obj[key])
-      }
-    }
-
-  }*/
 
 
 
   createControl(sections: Section[], label: string) {
 
+    if(label === CommonUtils.kyc){
+
+    }
+
     if (sections) {
+      //const formArray:FormArray = this._formBuilder.array();
       const formGroup: FormGroup = this._formBuilder.group({});
       sections.forEach(section => {
+
+
           section.fields.forEach(field => {
               const key = CommonUtils.generateControlKey(field);
               const val = this.respMap.get(key)
               const control = this._formBuilder.control(val, this.bindValidations(field.validations || []));
               formGroup.addControl(key, control);
             },
+
           );
         },
       );

@@ -2,7 +2,8 @@ import {Field} from "../model/common/field";
 
 export class CommonUtils {
 
-  static delimiter: String = "-"
+  static delimiter: string = "-" ;
+  static kyc:string = "KYC";
 
   public static generateControlKey = (field: Field): string => {
     var key:string ="";
