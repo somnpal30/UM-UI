@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Panel} from "../../model/common/panel";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,9 @@ export class DataserviceService {
 
   private _panels : Panel[];
   private _displayData : Map<string,[]>
+
+  private observer = new Subject< Map<string,[]>>();
+  subscriber$ = this.observer.asObservable()
 
   get panels(): Panel[] {
     return this._panels;
@@ -25,5 +29,10 @@ export class DataserviceService {
   set displayData(value: Map<string, []>) {
     //console.log(value)
     this._displayData = value;
+  }
+
+  updateDisplayData = ( data : Map<string,[]> ) => {
+    //console.log(data)
+    this.observer.next(data);
   }
 }

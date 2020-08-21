@@ -69,5 +69,7 @@ button:focus {
   outline: none;
 }
 
-
+.mat-expansion-panel-header-description {
+  display : inline !important;
+}
 

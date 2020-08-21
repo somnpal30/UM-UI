@@ -40,14 +40,16 @@ export class DynamicStepperComponent implements OnInit {
 
     this.userInformation = new UserInformation();
     this.globalFormGroup = this._formBuilder.group({});
+
     this.globalFormGroup.valueChanges.subscribe(selectedValue => {
       this.updateFormData(selectedValue);
     })
+    this.dataService.subscriber$.subscribe(data => (this.displayMap = data))
 
     this.commonService.loadSfmComponents().subscribe(
       resp => {
         this.respMap = new Map<string, string>()
-        this.parseObject(resp, this.respMap);
+        CommonUtils.parseSfmResponse(resp, this.respMap,"");
         this.commonService.loadComponents().subscribe(
           resp2 => {
             this.panelList = resp2;
@@ -69,6 +71,22 @@ export class DynamicStepperComponent implements OnInit {
     }
   }
 
+/*  parseSfmResponse(obj, map: Map<string, string>, mapKey:string){
+
+    for (var key in obj) {
+      if (obj[key] instanceof Object) {
+        const localkey = mapKey + key + "-"
+        //console.log(localkey)
+        this.parseSfmResponse(obj[key], map,localkey)
+      }else {
+        const tempMapKey = mapKey+ key;
+        map.set(tempMapKey, obj[key])
+      }
+    }
+
+  }*/
+
+
 
   createControl(sections: Section[], label: string) {
 
@@ -85,6 +103,7 @@ export class DynamicStepperComponent implements OnInit {
         },
       );
       this.globalFormGroup.addControl(label, formGroup);
+
     }
 
   }
@@ -122,7 +141,9 @@ export class DynamicStepperComponent implements OnInit {
 
     this.panelList.forEach( panel => {  this.displayMap.set(panel.label, this.prepareSection(dataMap, panel.sections)) })
 
-    this.dataService.displayData = this.displayMap;
+    //this.dataService.displayData = this.displayMap;
+    this.dataService.updateDisplayData(this.displayMap);
+
     //console.log(this.displayMap)
   }
 

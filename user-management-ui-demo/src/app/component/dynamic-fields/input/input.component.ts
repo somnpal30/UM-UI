@@ -6,7 +6,7 @@ import {CommonUtils} from "../../../utility/common";
 @Component({
   selector: 'app-input',
   template: `
-    <div>
+    <div class="field-full-width">
       <label for="{{field.id}}">{{field.label}}</label>
       <mat-form-field appearance="outline" class="field-full-width" [formGroup]="group">
         <input matInput class="field-fixed-height" name="{{field.name}}" id="{{field.id}}"

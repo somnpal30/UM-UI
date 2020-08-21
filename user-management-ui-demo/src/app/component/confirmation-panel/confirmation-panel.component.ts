@@ -1,14 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataserviceService} from "../../service/dataservice/dataservice.service";
 import {Panel} from "../../model/common/panel";
-import {AbstractControl, FormGroup} from "@angular/forms";
-import {Section} from "../../model/common/section";
-import {Field} from "../../model/common/field";
-import {CommonUtils} from "../../utility/common";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'confirmation-panel',
-  templateUrl: './confirmation-panel.component.html',
+  //templateUrl: './confirmation-panel.component.html',
+  template: `
+    sss
+    <div *ngFor="let key of this.keys">
+      {{key}}
+    </div>
+  `,
   styleUrls: ['./confirmation-panel.component.css']
 })
 export class ConfirmationPanelComponent implements OnInit {
@@ -18,40 +21,24 @@ export class ConfirmationPanelComponent implements OnInit {
 
   displayMap: Map<String, []>
 
+  keys = [];
+
   constructor(private dataService: DataserviceService) {
   }
 
 
   ngOnInit(): void {
-    this.displayMap = this.dataService.displayData
-    console.log(this.displayMap)
-  }
-
-/*  prepareSection(formGroup: AbstractControl, sections: Section[]): any {
-    const values: any[] = [];
-    if (sections) {
-      sections.forEach(section => {
-        values.push(this.prepareField(formGroup, section.fields))
+    //this.displayMap = this.dataService.displayData
+    this.dataService.subscriber$.subscribe(data => {
+      this.displayMap = data;
+      console.log(this.displayMap.keys())
+      this.keys = [];
+      this.displayMap.forEach((v: [], k: string) => {
+        console.log(k)
       })
-    }
-
-    return values;
-  }
-
-  prepareField = (formGroup: AbstractControl, fields: Field[]): any => {
-    const values: any[] = [];
-    fields.forEach(field => {
-      const key = CommonUtils.generateControlKey(field);
-      const control = formGroup.get(key);
-     // console.log(control);
-
-      const value = control.value;
-      const tuple = [field.label, value]
-      values.push(tuple);
     })
-    return values;
-
-  }*/
+    //console.log(this.displayMap)
+  }
 
 
 }

@@ -23,6 +23,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {DynamicStepperComponent} from './component/dynamic-stepper/dynamic-stepper.component';
 import {ConfirmationPanelComponent} from './component/confirmation-panel/confirmation-panel.component';
 import {CommonserviceService} from "./service/commonservice/commonservice.service";
+import { KycComponentComponent } from './component/kyc-component/kyc-component.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import {CommonserviceService} from "./service/commonservice/commonservice.servic
     DateComponent,
     DynamicStepperComponent,
     ConfirmationPanelComponent,
+    KycComponentComponent,
 
 
   ],
@@ -54,6 +58,8 @@ import {CommonserviceService} from "./service/commonservice/commonservice.servic
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
+    MatExpansionModule,
+    MatCheckboxModule,
   ],
   providers: [CommonserviceService, FormsModule, MatNativeDateModule],
   bootstrap: [AppComponent],
