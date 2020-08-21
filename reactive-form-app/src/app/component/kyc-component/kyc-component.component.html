@@ -1,0 +1,44 @@
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+  <form [formGroup]="myForm">
+    <p class="font-weight-bold">Provide KYC Information</p>
+    <div *ngFor="let kycInfo of kyc.controls; let i = index">
+      <div [formGroup]="kycInfo" class="row container" *ngIf="i === counter">
+        <div class="col-6">
+          <label>KYC ID Type</label><br>
+          <input type="text" class="form-control field-full-width" formControlName="kycType">
+        </div>
+        <div class="col-6">
+          <label>KYC ID Number</label>
+          <input type="text" class="form-control field-full-width" formControlName="kycValue">
+        </div>
+        <div class="col-6">
+          <label>Date issue on</label><br>
+          <input type="text" class="form-control field-full-width" formControlName="kycIssued">
+        </div>
+        <div class="col">
+          <label>Valid From</label>
+          <input type="text" class="form-control field-full-width" formControlName="kycValidFrom">
+        </div>
+        <div class="col">
+          <label>Valid To</label>
+          <input type="text" class="form-control field-full-width" formControlName="kycValidTo">
+        </div>
+      </div>
+      <div class="spacer"></div>
+    </div>
+  </form>
+  <div class="spacer"></div>
+
+  <div class="row container">
+    <div class="col-4">&nbsp;<mat-checkbox>Make this primary</mat-checkbox>
+    </div>
+    <div class="col-4">
+      <button type="button" mat-raised-button color="primary" (click)="add()"> Add more</button>
+    </div>
+  </div>
+  <div class="spacer">
+    {{counter}}
+    <hr>
+    {{myForm.value | json}}
+  </div>
+</div>
