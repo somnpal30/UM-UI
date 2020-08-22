@@ -28,8 +28,6 @@ export class InputComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.key =  this.field.apiGroup + "-" + this.field.apiSection + "-"  + this.field.name ;
-    //this.key = this.field.name;
     this.key = CommonUtils.generateControlKey(this.field)
   }
 

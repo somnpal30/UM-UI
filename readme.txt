@@ -28,3 +28,5 @@ ng build --prod
 
  https://medium.com/@mail.bahurudeen/create-a-dynamic-form-with-configurable-fields-and-validations-using-angular-6-994db56834da
 https://medium.com/@joshblf/dynamic-nested-reactive-forms-in-angular-654c1d4a769a
+
+https://material.io/resources/icons/?style=baseline

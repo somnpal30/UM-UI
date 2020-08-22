@@ -1,5 +1,5 @@
 import {ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {AbstractControl, FormGroup} from '@angular/forms';
 import {Field} from '../../model/common/field';
 import {InputComponent} from '../../component/dynamic-fields/input/input.component';
 import {SelectComponent} from '../../component/dynamic-fields/select/select.component';
@@ -18,7 +18,7 @@ const componentMapper = {
 
 
 export class DynamicFieldDirective implements OnInit {
-  @Input() group: FormGroup;
+  @Input("group") formGroup: AbstractControl;
   @Input() field: Field;
   componentRef: any;
 
@@ -33,7 +33,7 @@ export class DynamicFieldDirective implements OnInit {
       );
       this.componentRef = this.container.createComponent(factory);
       this.componentRef.instance.field = this.field;
-      this.componentRef.instance.group = this.group;
+      this.componentRef.instance.group = this.formGroup;
 
 
     }

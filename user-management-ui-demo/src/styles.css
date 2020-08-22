@@ -72,4 +72,13 @@ button:focus {
 .mat-expansion-panel-header-description {
   display : inline !important;
 }
+.container-row {
+  background-color: #FcFcFc;
+  border-color: black;
+  border-width: 1px;
+  border-style: dotted;
+}
 
+button {
+  border-radius: 25px !important;
+}

@@ -9,6 +9,7 @@ export class CommonUtils {
   static kyc: string = "KYC";
 
   public static generateControlKey = (field: Field): string => {
+
     var key: string = "";
     if (field.apiGroup) {
       key = key + field.apiGroup + CommonUtils.delimiter

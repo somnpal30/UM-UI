@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {Section} from '../../model/common/section';
 import {Panel} from '../../model/common/panel';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
@@ -7,6 +7,7 @@ import {UserInformation} from "../../model/business/userInformation";
 import {CommonUtils} from "../../utility/common";
 import {CommonserviceService} from "../../service/commonservice/commonservice.service";
 import {DataserviceService} from "../../service/dataservice/dataservice.service";
+import {EventService} from "../../service/event-service/event.service";
 
 @Component({
   selector: 'dynamic-stepper',
@@ -30,7 +31,8 @@ export class DynamicStepperComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
               private commonService: CommonserviceService,
-              private dataService: DataserviceService) {
+              private dataService: DataserviceService,
+              private eventService: EventService) {
 
   }
 
@@ -43,6 +45,13 @@ export class DynamicStepperComponent implements OnInit {
       this.updateFormData(selectedValue);
     })
     this.dataService.subscriber$.subscribe(data => (this.displayMap = data))
+
+    this.eventService.clickEventListener().subscribe(info => {
+      this.addMoreKycSection(info);
+    })
+
+
+
 
     this.commonService.loadSfmComponents().subscribe(
       resp => {
@@ -61,26 +70,57 @@ export class DynamicStepperComponent implements OnInit {
 
   }
 
+  addMoreKycSection = (label:string )  => {
+    console.log(this.globalFormGroup.contains(label));
+   var kycForm:FormGroup =  this.globalFormGroup.get(label) as FormGroup;
+    console.log(kycForm?.controls?.kycData as FormArray)
+    var kycFormArray:FormArray = kycForm?.controls?.kycData as FormArray
+
+    var tempSections:Section[];
+    this.panelList?.forEach(panel => {
+      if(panel.label===label){
+        tempSections = panel.sections
+      }
+
+    })
+
+
+    kycFormArray?.push(this.createFormBySection(tempSections));
+
+  }
+
+
+
+
+
   createControl = (sections: Section[], label: string) => {
     if (label === CommonUtils.kyc) {
-
+      this.globalFormGroup.addControl(label, this.createFormForKycSection(sections));
+    } else if (sections) {
+      this.globalFormGroup.addControl(label, this.createFormBySection(sections));
     }
+  }
 
-    if (sections) {
+  createFormForKycSection = (sections : Section[]) : FormGroup =>{
+    const kycForm = this._formBuilder.group({
+      kycData : new FormArray([this.createFormBySection(sections)]),
+    });
+    return kycForm;
+  }
 
-      const formGroup: FormGroup = this._formBuilder.group({});
-      sections.forEach(section => {
-          section.fields.forEach(field => {
-              const key = CommonUtils.generateControlKey(field);
-              const val = this.respMap.get(key)
-              const control = this._formBuilder.control(val, CommonUtils.bindValidations(field.validations || []));
-              formGroup.addControl(key, control);
-            },
-          );
-        },
-      );
-      this.globalFormGroup.addControl(label, formGroup);
-    }
+  createFormBySection = (sections : Section[]) :FormGroup =>{
+    const formGroup: FormGroup = this._formBuilder.group({});
+    sections.forEach(section => {
+        section.fields.forEach(field => {
+            const key = CommonUtils.generateControlKey(field);
+            const val = this.respMap.get(key)
+            const control = this._formBuilder.control(val, CommonUtils.bindValidations(field.validations || []));
+            formGroup.addControl(key, control);
+          },
+        );
+      },
+    );
+    return formGroup;
   }
 
   onSubmit = (event: Event) => {
