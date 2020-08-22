@@ -1,49 +1,13 @@
-<mat-accordion>
-  <mat-expansion-panel (opened)="panelOpenState = true"   (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Kyc Info 1
-      </mat-panel-title>
-      <mat-panel-description align="right">
-        <mat-icon aria-hidden="false">delete</mat-icon>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
-  </mat-expansion-panel>
-
-</mat-accordion>
+<div *ngFor="let section of sections">
+  <p class="font-weight-bold">{{section.label}}</p>
+  <div class="row">
+    <div *ngFor="let field of section.fields" [className]="field.label.indexOf('Valid') != -1 ? 'col' : 'col-6'" >
+      <ng-container dynamicField [field]="field" [group]="group">
+      </ng-container>
+    </div>
+  </div>
+</div>
 <div>
-  <p class="font-weight-bold">Provide KYC Information</p>
-  <div class="row">
-<!--    <div class="col-6">
-      <label>KYC ID Type</label><br>
-      <input type="text" class="form-control field-full-width" >
-    </div>
-    <div class="col-6">
-      <label>KYC ID Number</label>
-      <input type="text" class="form-control field-full-width">
-    </div>
-     <div class="col-6">
-      <label>Date issue on</label><br>
-      <input type="text" class="form-control field-full-width">
-    </div>
-    <div class="col">
-      <label>Valid From</label>
-      <input type="text" class="form-control field-full-width">
-    </div>
-    <div class="col">
-      <label>Valid To</label>
-      <input type="text" class="form-control field-full-width">
-    </div>-->
-    <div class="col-6" *ngFor="let field of fields" >
-      <label>{{field.label}}</label>
-      <input type="text" class="form-control field-full-width">
-    </div>
-
-  </div>
-  <div class="spacer"></div>
-  <div class="row">
-    <div class="col-4">&nbsp;<mat-checkbox>Make this primary</mat-checkbox></div>
-    <div class="col-4"><button type="button" mat-raised-button color="primary"> Add more</button></div>
-  </div>
+  <hr>
+  {{group.value | json}}
 </div>

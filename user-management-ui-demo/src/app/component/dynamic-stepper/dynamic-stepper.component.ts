@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
 import {Section} from '../../model/common/section';
-import {Validation} from '../../model/common/validation';
 import {Panel} from '../../model/common/panel';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {UserInformation} from "../../model/business/userInformation";
 import {CommonUtils} from "../../utility/common";
 import {CommonserviceService} from "../../service/commonservice/commonservice.service";
 import {DataserviceService} from "../../service/dataservice/dataservice.service";
-import {Field} from "../../model/common/field";
 
 @Component({
   selector: 'dynamic-stepper',
@@ -48,8 +46,10 @@ export class DynamicStepperComponent implements OnInit {
 
     this.commonService.loadSfmComponents().subscribe(
       resp => {
+
         this.respMap = new Map<string, string>()
-        CommonUtils.parseSfmResponse(resp, this.respMap,"");
+        CommonUtils.parseSfmResponse(resp, this.respMap, "");
+
         this.commonService.loadComponents().subscribe(
           resp2 => {
             this.panelList = resp2;
@@ -61,67 +61,28 @@ export class DynamicStepperComponent implements OnInit {
 
   }
 
-  parseObject(obj, map: Map<string, string>) {
-    for (var key in obj) {
-      map.set(key, obj[key])
-      //console.log("key: " + key + ", value: " + obj[key])
-      if (obj[key] instanceof Object) {
-        this.parseObject(obj[key], map);
-      }
-    }
-  }
-
-
-
-
-
-  createControl(sections: Section[], label: string) {
-
-    if(label === CommonUtils.kyc){
+  createControl = (sections: Section[], label: string) => {
+    if (label === CommonUtils.kyc) {
 
     }
 
     if (sections) {
-      //const formArray:FormArray = this._formBuilder.array();
+
       const formGroup: FormGroup = this._formBuilder.group({});
       sections.forEach(section => {
-
-
           section.fields.forEach(field => {
               const key = CommonUtils.generateControlKey(field);
               const val = this.respMap.get(key)
-              const control = this._formBuilder.control(val, this.bindValidations(field.validations || []));
+              const control = this._formBuilder.control(val, CommonUtils.bindValidations(field.validations || []));
               formGroup.addControl(key, control);
             },
-
           );
         },
       );
       this.globalFormGroup.addControl(label, formGroup);
-
     }
-
   }
 
-  bindValidations = (validations: Validation[]) => {
-    const validList = [];
-    if (validations.length > 0) {
-      validations.forEach(v => {
-
-        if (v.name === 'required') {
-          validList.push(Validators.required);
-        } else if (v.name === 'pattern') {
-          validList.push(Validators.pattern(v.validator));
-        }
-      });
-      // console.log(validList);
-    }
-    return Validators.compose(validList);
-  };
-
-  next = () => {
-
-  };
   onSubmit = (event: Event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -130,41 +91,18 @@ export class DynamicStepperComponent implements OnInit {
   };
 
   updateFormData = (formGrp: AbstractControl) => {
-    this.displayMap = new Map<string,[]>();
+    this.displayMap = new Map<string, []>();
     const dataMap = new Map<string, string>()
-    this.parseObject(formGrp, dataMap);
+    CommonUtils.parseObject(formGrp, dataMap);
 
-    this.panelList.forEach( panel => {  this.displayMap.set(panel.label, this.prepareSection(dataMap, panel.sections)) })
-
+    this.panelList.forEach(panel => {
+      this.displayMap.set(panel.label, CommonUtils.prepareSection(dataMap, panel.sections))
+    })
     //this.dataService.displayData = this.displayMap;
     this.dataService.updateDisplayData(this.displayMap);
 
     //console.log(this.displayMap)
   }
-
-  prepareSection(formValueMap: Map<string, string>, sections: Section[]): any {
-    const values: any[] = [];
-    if (sections) {
-      sections.forEach(section => {
-        values.push(this.prepareField(formValueMap, section.fields))
-      })
-    }
-
-    return values;
-  }
-
-  prepareField = (formValueMap: Map<string, string>, fields: Field[]): any => {
-    const values: any[] = [];
-    fields.forEach(field => {
-      const key = CommonUtils.generateControlKey(field);
-      const value = formValueMap.get(key);
-      const tuple = [field.label, value]
-      values.push(tuple);
-    })
-    return values;
-
-  }
-
 
 
 }

@@ -5,7 +5,10 @@ body {
   margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .container {
-  background-color: lightgray;
+  background-color: #F8F8F8;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
 }
 .spacer {
   margin-top: 20px; /* define margin as you see fit */

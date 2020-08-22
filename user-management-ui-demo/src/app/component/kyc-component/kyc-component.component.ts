@@ -5,14 +5,14 @@ import {Field} from "../../model/common/field";
 
 @Component({
   selector: 'kyc-component',
- /* templateUrl: './kyc-component.component.html',*/
-  template: `
+  templateUrl: './kyc-component.component.html',
+  /*template: `
    <div class="row-4">
      <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
        <mat-icon>plus_one</mat-icon>
      </button>
    </div>
-  `,
+  `,*/
   styleUrls: ['./kyc-component.component.css']
 })
 export class KycComponentComponent implements OnInit {
