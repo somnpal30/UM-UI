@@ -1,3 +1,4 @@
+<accordian-component [kycInfo]="kycInfo"></accordian-component>
 <div *ngFor="let section of sections">
   <p class="font-weight-bold">{{section.label}}</p>
   <div *ngFor="let kycInfo of kyc.controls; let i = index">

@@ -2,6 +2,7 @@ import {Field} from "../model/common/field";
 import {Section} from "../model/common/section";
 import {Validation} from "../model/common/validation";
 import {Validators} from "@angular/forms";
+import {Panel} from "../model/common/panel";
 
 export class CommonUtils {
 
@@ -23,6 +24,7 @@ export class CommonUtils {
   public static parseSfmResponse(obj, map: Map<string, string>, mapKey: string) {
 
     for (var key in obj) {
+      //console.log(obj)
       if (obj[key] instanceof Object) {
         const localkey = mapKey + key + CommonUtils.delimiter
         CommonUtils.parseSfmResponse(obj[key], map, localkey)
@@ -32,7 +34,19 @@ export class CommonUtils {
         map.set(tempMapKey, obj[key])
       }
     }
+  }
 
+  public static mappedFieldToLabel = (panels: Panel[], map: Map<string, string>) => {
+      panels.forEach( panel => {
+        panel.sections?.forEach(section => {
+          section.fields.forEach(field => {
+            const key = CommonUtils.generateControlKey(field);
+            const label = field.label
+            //console.log(key + ": " + label);
+            map.set(key,label);
+          })
+        })
+      });
   }
 
   public static prepareSection(formValueMap: Map<string, string>, sections: Section[]): any {
@@ -83,4 +97,6 @@ export class CommonUtils {
       }
     }
   }
+
+
 }

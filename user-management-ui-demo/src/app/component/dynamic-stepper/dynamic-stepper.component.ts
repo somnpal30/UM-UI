@@ -26,7 +26,7 @@ export class DynamicStepperComponent implements OnInit {
   globalFormGroup: FormGroup;
 
   userInformation: UserInformation;
-  respMap: Map<string, string>;
+  fieldToValueMap: Map<string, string>;
   displayMap: Map<string, []>
 
   constructor(private _formBuilder: FormBuilder,
@@ -51,13 +51,12 @@ export class DynamicStepperComponent implements OnInit {
     })
 
 
-
-
     this.commonService.loadSfmComponents().subscribe(
       resp => {
 
-        this.respMap = new Map<string, string>()
-        CommonUtils.parseSfmResponse(resp, this.respMap, "");
+        this.fieldToValueMap = new Map<string, string>()
+        CommonUtils.parseSfmResponse(resp, this.fieldToValueMap, "");
+        this.dataService.fieldToValueMap = this.fieldToValueMap;
 
         this.commonService.loadComponents().subscribe(
           resp2 => {
@@ -70,15 +69,15 @@ export class DynamicStepperComponent implements OnInit {
 
   }
 
-  addMoreKycSection = (label:string )  => {
-    console.log(this.globalFormGroup.contains(label));
-   var kycForm:FormGroup =  this.globalFormGroup.get(label) as FormGroup;
-    console.log(kycForm?.controls?.kycData as FormArray)
-    var kycFormArray:FormArray = kycForm?.controls?.kycData as FormArray
+  addMoreKycSection = (label: string) => {
+    //console.log(this.globalFormGroup.contains(label));
+    var kycForm: FormGroup = this.globalFormGroup.get(label) as FormGroup;
+    //console.log(kycForm?.controls?.kycData as FormArray)
+    var kycFormArray: FormArray = kycForm?.controls?.kycData as FormArray
 
-    var tempSections:Section[];
+    var tempSections: Section[];
     this.panelList?.forEach(panel => {
-      if(panel.label===label){
+      if (panel.label === label) {
         tempSections = panel.sections
       }
 
@@ -90,9 +89,6 @@ export class DynamicStepperComponent implements OnInit {
   }
 
 
-
-
-
   createControl = (sections: Section[], label: string) => {
     if (label === CommonUtils.kyc) {
       this.globalFormGroup.addControl(label, this.createFormForKycSection(sections));
@@ -101,19 +97,19 @@ export class DynamicStepperComponent implements OnInit {
     }
   }
 
-  createFormForKycSection = (sections : Section[]) : FormGroup =>{
+  createFormForKycSection = (sections: Section[]): FormGroup => {
     const kycForm = this._formBuilder.group({
-      kycData : new FormArray([this.createFormBySection(sections)]),
+      kycData: new FormArray([this.createFormBySection(sections)]),
     });
     return kycForm;
   }
 
-  createFormBySection = (sections : Section[]) :FormGroup =>{
+  createFormBySection = (sections: Section[]): FormGroup => {
     const formGroup: FormGroup = this._formBuilder.group({});
     sections.forEach(section => {
         section.fields.forEach(field => {
             const key = CommonUtils.generateControlKey(field);
-            const val = this.respMap.get(key)
+            const val = this.fieldToValueMap.get(key)
             const control = this._formBuilder.control(val, CommonUtils.bindValidations(field.validations || []));
             formGroup.addControl(key, control);
           },

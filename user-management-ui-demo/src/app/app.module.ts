@@ -26,6 +26,7 @@ import {CommonserviceService} from "./service/commonservice/commonservice.servic
 import { KycComponentComponent } from './component/kyc-component/kyc-component.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { AccordianComponent } from './component/accordian/accordian.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     DynamicStepperComponent,
     ConfirmationPanelComponent,
     KycComponentComponent,
+    AccordianComponent,
 
 
   ],

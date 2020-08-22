@@ -31,10 +31,10 @@ export class ConfirmationPanelComponent implements OnInit {
     //this.displayMap = this.dataService.displayData
     this.dataService.subscriber$.subscribe(data => {
       this.displayMap = data;
-      console.log(this.displayMap.keys())
+      //console.log(this.displayMap.keys())
       this.keys = [];
       this.displayMap.forEach((v: [], k: string) => {
-        console.log(k)
+        //console.log(k)
       })
     })
     //console.log(this.displayMap)
