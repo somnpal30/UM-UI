@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Header} from "../../model/header/header";
 import {Panel} from "../../model/common/panel";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,14 @@ export class CommonserviceService {
 
 
   loadHeaderData = (): Observable<Header[]> => {
-    return this._https.get<Header[]>('http://localhost:3000/header');
+    return this._https.get<Header[]>(environment.headerUrl);
   };
 
   loadComponents = (): Observable<Panel[]> => {
-    return this._https.get<Panel[]>('http://localhost:3000/components');
+    return this._https.get<Panel[]>(environment.componentUrl);
   }
 
   loadSfmComponents = (): Observable<any> => {
-    return this._https.get<any>('http://localhost:3000/sfm-response');
+    return this._https.get<any>(environment.sfmResponseUrl);
   }
 }
