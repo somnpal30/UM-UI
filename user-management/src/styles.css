@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 50px;
+  padding-top: 30px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: lightsteelblue;
+}
+a {
+  text-decoration: none !important;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: red !important;
+}
+
+.font-weight-bold-selected {
+ font-weight: bold;
+ color: orangered;
+}
