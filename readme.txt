@@ -14,6 +14,7 @@ ng g c component/dynamic-stepper --inline-style=true --inline-template=true
 
 ng generate directive directive/dynamic-field/dynamic-field
 
+--inline-style=true --skip-tests
 
 ng update @angular/cli @angular/core
 
@@ -30,3 +31,8 @@ ng build --prod
 https://medium.com/@joshblf/dynamic-nested-reactive-forms-in-angular-654c1d4a769a
 
 https://material.io/resources/icons/?style=baseline
+
+
+
+
+https://demo9262449.mockable.io/component
