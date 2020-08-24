@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from './app-routing.module';
+import {AppRoutingModule, routingComponent} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeadercomponentComponent} from './component/headercomponent/headercomponent.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -23,10 +23,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {DynamicStepperComponent} from './component/dynamic-stepper/dynamic-stepper.component';
 import {ConfirmationPanelComponent} from './component/confirmation-panel/confirmation-panel.component';
 import {CommonserviceService} from "./service/commonservice/commonservice.service";
-import { KycComponentComponent } from './component/kyc-component/kyc-component.component';
+import {KycComponentComponent} from './component/kyc-component/kyc-component.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { AccordianComponent } from './component/accordian/accordian.component';
+import {AccordianComponent} from './component/accordian/accordian.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +42,7 @@ import { AccordianComponent } from './component/accordian/accordian.component';
     ConfirmationPanelComponent,
     KycComponentComponent,
     AccordianComponent,
+    routingComponent,
 
 
   ],

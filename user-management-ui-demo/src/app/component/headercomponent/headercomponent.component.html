@@ -2,7 +2,12 @@
   <p class="font-weight-bold"> Select user type </p>
   <ul class="nav nav-pills nav-fill">
     <li *ngFor="let headerVal of headers; let i = index" class="nav-item ">
-      <a class="nav-link" [ngClass]="(selectedNavIndex===i) ? 'active' : '' "   href="#" (click)="updateRole(i)">{{headerVal.userType}}</a>
+      <a class="nav-link"
+         [ngClass]="(selectedNavIndex===i) ? 'active' : '' "
+         [routerLink]="['/user-register']"
+         (click)="updateRole(i)">
+        {{headerVal.userType}}
+      </a>
     </li>
   </ul>
   <div class="spacer"></div>

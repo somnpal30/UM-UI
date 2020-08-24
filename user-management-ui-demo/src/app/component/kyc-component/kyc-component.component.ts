@@ -29,7 +29,7 @@ export class KycComponentComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.fieldToLabelMap = new Map<string, string>();
     CommonUtils.mappedFieldToLabel(this.dataService.panels, this.dataService.fieldToLabelMap);
-    console.log(this.dataService.fieldToLabelMap)
+    //console.log(this.dataService.fieldToLabelMap)
     //console.log(this.form)
     this.sections.forEach(section => {
       //console.log(section)
@@ -47,6 +47,7 @@ export class KycComponentComponent implements OnInit {
   }
 
   add = () => {
+    console.log(this.form.value)
     this.counter++
     this.kycInfo = this.convertFormValueToJson();
     this.eventService.emitClickEvent("KYC");

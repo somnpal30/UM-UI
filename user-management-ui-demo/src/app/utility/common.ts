@@ -15,9 +15,10 @@ export class CommonUtils {
     if (field.apiGroup) {
       key = key + field.apiGroup + CommonUtils.delimiter
     }
-    if (field.apiSection) {
+   /* if (field.apiSection) {
       key = key + field.apiSection + CommonUtils.delimiter
-    }
+    }*/
+    key= key + (field.apiSection ?  field.apiSection : "0")   + CommonUtils.delimiter
     return key + field.name;
   }
 

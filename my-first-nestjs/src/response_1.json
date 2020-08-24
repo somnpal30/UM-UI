@@ -1,0 +1,29 @@
+{
+  "userInformation": {
+    "basicInformation": {
+      "loginid": "somnath",
+      "dateOfJoining": "2020-08-08",
+      "companyRegNumber": "companyRegNumber",
+      "companyName": "companyName"
+    },
+    "addressInformation": {
+      "add21": "add21",
+      "add2": "add2",
+      "city": "Indore",
+      "country": "IN",
+      "state": "MP"
+    }
+  },
+  "kycInformation": [{
+    "kycIdIssueCountry": "string",
+    "kycIdIssueDate": "1987-09-09",
+    "kycIdIssuePlace": "string",
+    "isKycIdExpires": "Y",
+    "isPrimaryKYCId": "Y",
+    "kycIdValidFrom": "1987-09-09",
+    "kycIdValidTo": "1987-09-09",
+    "kycIdType": "string",
+    "kycIdValue": "string",
+    "kycImageUrl": "string"
+  }]
+}

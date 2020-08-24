@@ -5,7 +5,7 @@ import { Response } from 'express';
 import * as BODY_Response from './component.json';
 import * as HEADER_Response from './header.json';
 import * as VIEW_Response from './view.json';
-import * as SFM_Response from './response1.json';
+import * as SFM_Response from './response_1.json';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}

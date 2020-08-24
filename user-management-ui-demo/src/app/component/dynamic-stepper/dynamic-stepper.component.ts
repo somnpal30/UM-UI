@@ -56,6 +56,7 @@ export class DynamicStepperComponent implements OnInit {
 
         this.fieldToValueMap = new Map<string, string>()
         CommonUtils.parseSfmResponse(resp, this.fieldToValueMap, "");
+        console.log(this.fieldToValueMap)
         this.dataService.fieldToValueMap = this.fieldToValueMap;
 
         this.commonService.loadComponents().subscribe(
@@ -110,6 +111,7 @@ export class DynamicStepperComponent implements OnInit {
         section.fields.forEach(field => {
             const key = CommonUtils.generateControlKey(field);
             const val = this.fieldToValueMap.get(key)
+            console.log(key + " <-> " + val)
             const control = this._formBuilder.control(val, CommonUtils.bindValidations(field.validations || []));
             formGroup.addControl(key, control);
           },
