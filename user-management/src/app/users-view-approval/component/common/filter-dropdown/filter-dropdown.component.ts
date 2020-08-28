@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {EventStoreService} from "../../../service/event-store.service";
 
 @Component({
   selector: 'filter-dropdown',
@@ -8,8 +9,8 @@ import {Component, Input, OnInit} from '@angular/core';
         <mat-icon>filter_alt</mat-icon>
         Filter
       </mat-label>
-      <mat-select>
-        <mat-option *ngFor="let option of options" value="option">{{option}}</mat-option>
+      <mat-select (selectionChange)="changeValue($event)">
+        <mat-option *ngFor="let option of options" value="{{option}}">{{option}}</mat-option>
       </mat-select>
     </mat-form-field>
   `,
@@ -17,12 +18,17 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class FilterDropdownComponent implements OnInit {
 
-  constructor() {
+  constructor(private eventStoreService: EventStoreService) {
   }
 
   @Input() options: string[]
 
   ngOnInit(): void {
+  }
+
+  changeValue = (event) => {
+    //console.log(event.value)
+    this.eventStoreService.emitClickEvent(event.value);
   }
 
 }

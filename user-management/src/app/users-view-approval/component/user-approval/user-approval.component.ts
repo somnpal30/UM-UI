@@ -8,6 +8,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MatSort} from "@angular/material/sort";
 import {MatDialog} from "@angular/material/dialog";
 import {RejectionDialogComponent} from "../common/rejection-dialog/rejection-dialog.component";
+import {EventStoreService} from "../../service/event-store.service";
 
 
 @Component({
@@ -25,23 +26,38 @@ export class UserApprovalComponent implements OnInit {
   dataSource;
   selection = new SelectionModel<ApprovalList>(true, []);
 
-  comment:string = "somnath";
+  comment: string = "";
+  selectedFilterValue = ""
 
   constructor(private dataService: RemotedataService,
               private route: ActivatedRoute,
               private router: Router,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private eventStoreService: EventStoreService) {
   }
 
 
   ngOnInit() {
+    this.eventStoreService.clickEventListener().subscribe(info => {
+      console.log(info)
+      if(info !== this.options[0]){
+        this.selectedFilterValue = info
+      }else {
+        this.selectedFilterValue = '';
+      }
+      if(this.dataSource){
+        this.dataSource.filter = this.selectedFilterValue;
+      }
+
+    })
 
     this.dataService.loadApprovalList().subscribe(
       resp => {
         this.dataSource = new MatTableDataSource<ApprovalList>(resp);
         setTimeout(() => {
-          this.dataSource.sort = this.sort
-          this.dataSource.paginator = this.paginator
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+         // this.dataSource.filter = this.selectedFilterValue;
 
         });
       }
@@ -80,7 +96,7 @@ export class UserApprovalComponent implements OnInit {
   }
 
   reject = (id: string) => {
-   const dialogRef = this.dialog.open(RejectionDialogComponent,{width : '400px' })
+    const dialogRef = this.dialog.open(RejectionDialogComponent, {width: '400px'})
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

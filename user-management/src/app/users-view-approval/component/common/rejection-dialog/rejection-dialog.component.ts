@@ -1,6 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {RejectionDialogData} from "../../../model/rejectionDialogData";
+import {Component} from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'rejection-dialog-component',
@@ -11,13 +10,13 @@ export class RejectionDialogComponent {
 
 
   fromDialog: string;
+
   constructor(public dialogRef: MatDialogRef<RejectionDialogComponent>) {
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 
 
 }
