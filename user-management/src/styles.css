@@ -17,6 +17,19 @@ a {
   background-color: red !important;
 }
 
+.round-btn{
+  border-radius: 25px !important;
+}
+.red-btn {
+  color : white;
+  background-color: red;
+}
+.grey-btn{
+  color : black;
+  background-color: lightgray;
+}
+
+
 .font-weight-bold-selected {
  font-weight: bold;
  color: orangered;

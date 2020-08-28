@@ -6,6 +6,8 @@ import {ApprovalList} from "../../model/approval-list";
 import {RemotedataService} from "../../service/remotedata.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSort} from "@angular/material/sort";
+import {MatDialog} from "@angular/material/dialog";
+import {RejectionDialogComponent} from "../common/rejection-dialog/rejection-dialog.component";
 
 
 @Component({
@@ -17,14 +19,18 @@ export class UserApprovalComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['select', 'approval_type', 'approval_level', 'submitted_by', 'submitted_on','details', "action", "action2"];
-  displayedColumnValue: string[] = ['', 'Approval Type', 'Approval Level', 'Submitted By', 'Submitted On','Details', 'Approve', 'Reject']
+  displayedColumns: string[] = ['select', 'approval_type', 'approval_level', 'submitted_by', 'submitted_on', "action", "action2"];
+  displayedColumnValue: string[] = ['', 'Approval Type', 'Approval Level', 'Submitted By', 'Submitted On', 'Details', 'Approve', 'Reject']
   options = ['All', 'Allocation', 'Addition', 'Modification', 'Reversal']
   dataSource;
   selection = new SelectionModel<ApprovalList>(true, []);
 
+  comment:string = "somnath";
 
-  constructor(private dataService: RemotedataService, private route: ActivatedRoute, private router: Router) {
+  constructor(private dataService: RemotedataService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private dialog: MatDialog) {
   }
 
 
@@ -63,17 +69,23 @@ export class UserApprovalComponent implements OnInit {
   }
 
 
-
-  showDetails = (id:string) => {
+  showDetails = (row) => {
     //console.log(row.id);
     this.router.navigate(['../view-details'],
-      {relativeTo: this.route, queryParams: {identifier: id, mode: 'view'}, queryParamsHandling: 'merge'});
+      {relativeTo: this.route, queryParams: {identifier: row.id, mode: 'view'}, queryParamsHandling: 'merge'});
 
   }
-  approve = (id:string) => {
+  approve = (id: string) => {
     console.log(id);
   }
-  reject = (id:string) => {
-    console.log(id);
+
+  reject = (id: string) => {
+   const dialogRef = this.dialog.open(RejectionDialogComponent,{width : '400px' })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.comment = result;
+    })
+
   }
 }

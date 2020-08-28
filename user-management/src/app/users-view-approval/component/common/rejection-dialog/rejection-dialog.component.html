@@ -1,0 +1,11 @@
+<div class="container-lg p-3 mb-2 bg-white text-dark rounded-lg">
+  <label>
+    <mat-icon color="warn">add_alert</mat-icon>
+    Are you sure want to reject the allocation ?</label>
+  <div class="font-weight-bold">Comment</div>
+  <textarea matInput class="form-control" [(ngModel)]="fromDialog"></textarea>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="fromDialog" cdkFocusInitia class="round-btn red-btn">Yes</button>
+    <button mat-button (click)="onNoClick()" class="round-btn grey-btn">No</button>
+  </div>
+</div>
