@@ -13,7 +13,8 @@ const routes: Routes = [
   {
     path: 'user', component: UserComponent, children: [
       {path: 'submission', component: UserSubmissionComponent},
-      {path: 'approval', component: UserApprovalComponent}
+      {path: 'approval', component: UserApprovalComponent},
+      {path: 'view-details', component: UserViewComponent}
     ]
   }
 ];

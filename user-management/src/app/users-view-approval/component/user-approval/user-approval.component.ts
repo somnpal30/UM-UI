@@ -4,6 +4,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {ApprovalList} from "../../model/approval-list";
 import {RemotedataService} from "../../service/remotedata.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -19,7 +20,8 @@ export class UserApprovalComponent implements OnInit {
   dataSource;
   selection = new SelectionModel<ApprovalList>(true, []);
 
-  constructor(private dataService: RemotedataService) {
+
+  constructor(private dataService: RemotedataService,  private route: ActivatedRoute, private router: Router) {
   }
 
 
@@ -38,7 +40,7 @@ export class UserApprovalComponent implements OnInit {
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.dataSource?.data.length;
     return numSelected === numRows;
   }
 
@@ -53,8 +55,14 @@ export class UserApprovalComponent implements OnInit {
     this.selection.selected.forEach(s => console.log(s.id));
   }
 
-  changeHoverColor = (row) => {
+  /*changeHoverColor = (row) => {
     console.log(row);
-  }
+  }*/
 
+  showDetails = (row) => {
+    //console.log(row.id);
+    this.router.navigate(['../view-details'],
+      {relativeTo: this.route, queryParams : { identifier : row.id , mode : 'view' } , queryParamsHandling : 'merge'});
+
+  }
 }
