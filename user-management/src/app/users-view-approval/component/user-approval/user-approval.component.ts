@@ -5,6 +5,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {ApprovalList} from "../../model/approval-list";
 import {RemotedataService} from "../../service/remotedata.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {MatSort} from "@angular/material/sort";
 
 
 @Component({
@@ -14,14 +15,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class UserApprovalComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['select', 'approval_type', 'approval_level', 'submitted_by', 'submitted_on', "action","action2"];
-  displayedColumnValue:string[] = ['','Approval Type','Approval Level','Submitted By', 'Submitted On','Action','']
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  displayedColumns: string[] = ['select', 'approval_type', 'approval_level', 'submitted_by', 'submitted_on','details', "action", "action2"];
+  displayedColumnValue: string[] = ['', 'Approval Type', 'Approval Level', 'Submitted By', 'Submitted On','Details', 'Approve', 'Reject']
   options = ['All', 'Allocation', 'Addition', 'Modification', 'Reversal']
   dataSource;
   selection = new SelectionModel<ApprovalList>(true, []);
 
 
-  constructor(private dataService: RemotedataService,  private route: ActivatedRoute, private router: Router) {
+  constructor(private dataService: RemotedataService, private route: ActivatedRoute, private router: Router) {
   }
 
 
@@ -30,7 +33,11 @@ export class UserApprovalComponent implements OnInit {
     this.dataService.loadApprovalList().subscribe(
       resp => {
         this.dataSource = new MatTableDataSource<ApprovalList>(resp);
-        setTimeout(() => this.dataSource.paginator = this.paginator);
+        setTimeout(() => {
+          this.dataSource.sort = this.sort
+          this.dataSource.paginator = this.paginator
+
+        });
       }
     );
 
@@ -55,14 +62,18 @@ export class UserApprovalComponent implements OnInit {
     this.selection.selected.forEach(s => console.log(s.id));
   }
 
-  /*changeHoverColor = (row) => {
-    console.log(row);
-  }*/
 
-  showDetails = (row) => {
+
+  showDetails = (id:string) => {
     //console.log(row.id);
     this.router.navigate(['../view-details'],
-      {relativeTo: this.route, queryParams : { identifier : row.id , mode : 'view' } , queryParamsHandling : 'merge'});
+      {relativeTo: this.route, queryParams: {identifier: id, mode: 'view'}, queryParamsHandling: 'merge'});
 
+  }
+  approve = (id:string) => {
+    console.log(id);
+  }
+  reject = (id:string) => {
+    console.log(id);
   }
 }

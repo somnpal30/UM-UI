@@ -26,14 +26,14 @@ table{
   border-collapse: collapse;
 }
 
-.w-75{
-  width: 50px;
-}
+/*.w-75{*/
+/*  width: 50px;*/
+/*}*/
 
-.w-100{
-  width: 100px;
-  horiz-align: right;
-}
+/*.w-100{*/
+/*  width: 100px;*/
+/*  horiz-align: right;*/
+/*}*/
 
 .button-approve {
   border-radius: 10px !important;
@@ -75,9 +75,13 @@ th {
 }
 
 tr.mat-row:hover {
-  background-color: #d3deed;
+  background-color: #f6f6f6;
 }
 
 .right-align {
   horiz-align: right;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
 }

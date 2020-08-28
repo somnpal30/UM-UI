@@ -15,6 +15,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -22,23 +23,27 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     RoutingComponent,
     FilterDropdownComponent
   ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatTabsModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatIconModule,
-    MatTableModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatPaginatorModule
-  ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatTabsModule,
+        MatFormFieldModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatIconModule,
+        MatTableModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatPaginatorModule,
+        MatSortModule
+    ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    MatSortModule
+  ]
 })
 export class AppModule {
 }
