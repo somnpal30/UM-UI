@@ -6,12 +6,17 @@ import {UserApprovalComponent} from "./users-view-approval/component/user-approv
 import {UserSubmissionComponent} from "./users-view-approval/component/user-submission/user-submission.component";
 
 const routes: Routes = [
+
+  {
+    path: '', redirectTo: '/user/approval', pathMatch: 'full'
+  },
   {
     path: 'user', component: UserComponent, children: [
       {path: 'submission', component: UserSubmissionComponent},
       {path: 'approval', component: UserApprovalComponent}
     ]
-  }];
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -21,4 +26,4 @@ export class AppRoutingModule {
 }
 
 
-export const RoutingComponent = [UserComponent, UserViewComponent, UserApprovalComponent,UserSubmissionComponent];
+export const RoutingComponent = [UserComponent, UserViewComponent, UserApprovalComponent, UserSubmissionComponent];

@@ -15,6 +15,7 @@ import {Panel} from '../../model/common/panel';
             <div *ngFor="let field of section.fields" [className]="field.label.indexOf('Valid') != -1 ? 'col' : 'col-6'" >
                 <ng-container dynamicField [field]="field" [group]="selectedFormGroup">
                 </ng-container>
+
             </div>
         </div>
       </div>

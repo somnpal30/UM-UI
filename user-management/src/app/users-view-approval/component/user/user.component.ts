@@ -12,18 +12,19 @@ export class UserComponent implements OnInit {
   activeLink: string;
 
   constructor(private route: ActivatedRoute, private router: Router) {
-
   }
 
-  ngOnInit = (): void => {
+  ngOnInit (): void {
     this.links.forEach(link => {
       if (this.router.url.indexOf(link[0]) > -1) {
         this.activeLink = link[0];
       }
     })
+
   }
 
   displayChild = (tabselected) => {
+
     this.activeLink = tabselected
     var route: string;
     this.router.navigate([tabselected], {relativeTo: this.route})

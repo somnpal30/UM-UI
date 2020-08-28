@@ -5,10 +5,10 @@ html, body {
 }
 
 body {
-  margin: 50px;
-  padding-top: 30px;
+  margin: 40px;
+  padding-top: 20px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: lightsteelblue;
+  background-color: #d3deed;
 }
 a {
   text-decoration: none !important;
@@ -20,4 +20,64 @@ a {
 .font-weight-bold-selected {
  font-weight: bold;
  color: orangered;
+}
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.w-75{
+  width: 50px;
+}
+
+.w-100{
+  width: 100px;
+  horiz-align: right;
+}
+
+.button-approve {
+  border-radius: 10px !important;
+  background-color: #00CED1;
+  color: white;
+  border-width: 0px;
+  font-weight: normal;
+
+}
+.button-reject {
+  border-radius: 10px !important;
+  background-color: lightgray;
+  color: black;
+  border-width: 0px;
+  font-weight: normal;
+}
+
+button:focus, button:active:focus, button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}
+.header-align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.th-center{
+  text-align: center;
+}
+.th-left{
+  text-align: left;
+}
+.th-right{
+  text-align: right;
+}
+
+th {
+  text-align: center;
+}
+
+tr.mat-row:hover {
+  background-color: #d3deed;
+}
+
+.right-align {
+  horiz-align: right;
 }

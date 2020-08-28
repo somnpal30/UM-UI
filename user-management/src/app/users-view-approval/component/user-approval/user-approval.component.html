@@ -1,1 +1,78 @@
-<p>user-approval works!</p>
+
+<div class="font-weight-bold">Approvals</div>
+
+<br>
+<div class="row p-3">
+  <div class="col-6">
+    <filter-dropdown [options]="options"></filter-dropdown>
+  </div>
+  <div class="col-6">
+    <div class="float-right">
+      <button mat-raised-button class="button-approve" *ngIf="isAllSelected()">Approve All</button>
+    </div>
+  </div>
+</div>
+<div class="mat-elevation-z8 container">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="approval_type">
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[1]}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.approval_type}} </td>
+    </ng-container>
+
+
+      <ng-container matColumnDef="approval_level">
+          <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[2]}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.approval_level}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="submitted_by">
+          <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[3]}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.submitted_by}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="submitted_on">
+          <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[4]}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.submitted_on}} </td>
+        </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[5]}} </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button class="button-approve">APPROVE</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action2">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+         <button mat-raised-button class="button-reject">REJECT</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="selection.toggle(row)" (mouseenter)="changeHoverColor(row)"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+<!--<div>
+  <button  mat-raised-button (click)="logSelection()">Console Log Selected</button>
+</div>-->
+

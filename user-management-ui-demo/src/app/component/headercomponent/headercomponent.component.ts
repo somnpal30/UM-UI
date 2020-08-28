@@ -16,6 +16,8 @@ export class HeadercomponentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(sessionStorage.getItem('lastname'))
+    console.log(localStorage.getItem('userid'));
     this.commonserviceService.loadHeaderData().subscribe(
       data => {
         this.headers = data;

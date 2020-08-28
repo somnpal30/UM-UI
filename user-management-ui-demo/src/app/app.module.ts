@@ -27,6 +27,7 @@ import {KycComponentComponent} from './component/kyc-component/kyc-component.com
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {AccordianComponent} from './component/accordian/accordian.component';
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -46,24 +47,25 @@ import {AccordianComponent} from './component/accordian/accordian.component';
 
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatCheckboxModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatStepperModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatIconModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatExpansionModule,
+        MatCheckboxModule,
+        MatDividerModule,
+    ],
   providers: [CommonserviceService, FormsModule, MatNativeDateModule],
   bootstrap: [AppComponent],
   //exports: [ MatFormFieldModule, MatInputModule ]

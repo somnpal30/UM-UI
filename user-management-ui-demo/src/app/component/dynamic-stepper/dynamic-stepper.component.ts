@@ -29,6 +29,8 @@ export class DynamicStepperComponent implements OnInit {
   fieldToValueMap: Map<string, string>;
   displayMap: Map<string, []>
 
+  testLabel:String;
+
   constructor(private _formBuilder: FormBuilder,
               private commonService: CommonserviceService,
               private dataService: DataserviceService,
@@ -56,7 +58,7 @@ export class DynamicStepperComponent implements OnInit {
 
         this.fieldToValueMap = new Map<string, string>()
         CommonUtils.parseSfmResponse(resp, this.fieldToValueMap, "");
-        console.log(this.fieldToValueMap)
+        //console.log(this.fieldToValueMap)
         this.dataService.fieldToValueMap = this.fieldToValueMap;
 
         this.commonService.loadComponents().subscribe(
@@ -111,7 +113,7 @@ export class DynamicStepperComponent implements OnInit {
         section.fields.forEach(field => {
             const key = CommonUtils.generateControlKey(field);
             const val = this.fieldToValueMap.get(key)
-            console.log(key + " <-> " + val)
+            //console.log(key + " <-> " + val)
             const control = this._formBuilder.control(val, CommonUtils.bindValidations(field.validations || []));
             formGroup.addControl(key, control);
           },
@@ -142,5 +144,9 @@ export class DynamicStepperComponent implements OnInit {
     //console.log(this.displayMap)
   }
 
+  stepSelect = (event) => {
+    console.log(event.selectedStep.label)
+    this.testLabel = event.selectedStep.label;
+  }
 
 }

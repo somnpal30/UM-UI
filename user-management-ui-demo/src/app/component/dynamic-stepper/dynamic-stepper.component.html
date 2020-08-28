@@ -1,6 +1,6 @@
 <form [formGroup]="globalFormGroup" id="form" >
 
-  <mat-horizontal-stepper [linear]="false" #stepper labelPosition="bottom">
+  <mat-horizontal-stepper [linear]="false" #stepper labelPosition="bottom" (selectionChange)="stepSelect($event)">
 
     <mat-step *ngFor="let panel of panelList ;let i = index" label="{{panel.label}}"
               [stepControl]="globalFormGroup.controls[panel.label]" errorMessage="Missing Mandatory Fields">
@@ -13,3 +13,4 @@
     <button type="button" mat-raised-button color="primary">next</button>&nbsp;&nbsp;&nbsp;
   </div>
 </form>
+
