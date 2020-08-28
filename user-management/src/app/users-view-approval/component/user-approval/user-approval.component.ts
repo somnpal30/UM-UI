@@ -21,7 +21,7 @@ export class UserApprovalComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   displayedColumns: string[] = ['select', 'approval_type', 'approval_level', 'submitted_by', 'submitted_on', "action", "action2"];
-  displayedColumnValue: string[] = ['', 'Approval Type', 'Approval Level', 'Submitted By', 'Submitted On', 'Details', 'Approve', 'Reject']
+  displayedColumnValue: string[] = ['', 'Approval Type', 'Approval Level', 'Submitted By', 'Submitted On', 'Details', 'Action', 'Reject']
   options = ['All', 'Allocation', 'Addition', 'Modification', 'Reversal']
   dataSource;
   selection = new SelectionModel<ApprovalList>(true, []);

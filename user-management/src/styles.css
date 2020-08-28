@@ -74,13 +74,13 @@ button:focus, button:active:focus, button.active:focus {
 }
 
 .th-center{
-  text-align: center;
+  text-align: center !important;;
 }
 .th-left{
   text-align: left;
 }
 .th-right{
-  text-align: right;
+  text-align: right !important;
 }
 
 th {
