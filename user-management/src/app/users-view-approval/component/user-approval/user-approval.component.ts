@@ -9,6 +9,8 @@ import {MatSort} from "@angular/material/sort";
 import {MatDialog} from "@angular/material/dialog";
 import {RejectionDialogComponent} from "../common/rejection-dialog/rejection-dialog.component";
 import {EventStoreService} from "../../service/event-store.service";
+import {ConfirmationDialogComponent} from "../common/confirmation-dialog/confirmation-dialog.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -29,10 +31,13 @@ export class UserApprovalComponent implements OnInit {
   comment: string = "";
   selectedFilterValue = ""
 
+  pageLength;
+
   constructor(private dataService: RemotedataService,
               private route: ActivatedRoute,
               private router: Router,
               private dialog: MatDialog,
+              private snackBar: MatSnackBar,
               private eventStoreService: EventStoreService) {
   }
 
@@ -93,6 +98,15 @@ export class UserApprovalComponent implements OnInit {
   }
   approve = (id: string) => {
     console.log(id);
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {width: '400px'})
+
+    dialogRef.afterClosed().subscribe(result => {
+       if(result === 'YES'){
+        this.snackBar.open("Allocation of User Successfully", "Close", {
+          duration: 1000,
+        });
+      }
+     })
   }
 
   reject = (id: string) => {
@@ -104,4 +118,6 @@ export class UserApprovalComponent implements OnInit {
     })
 
   }
+
+
 }

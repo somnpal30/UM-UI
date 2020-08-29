@@ -1,1 +1,9 @@
-<p>confirmation-dialog works!</p>
+<div class="container-lg p-3 mb-2 bg-white text-dark rounded-lg">
+  <label>
+    <mat-icon color="warn">info</mat-icon> Are you sure want to approve the allocation ?</label>
+   <div mat-dialog-actions align="center">
+     <button mat-button  (click)="onClick('YES')" cdkFocusInitia class="round-btn red-btn">Yes</button>
+    <button mat-button (click)="onClick('NO')" class="round-btn grey-btn">No</button>
+  </div>
+</div>
+

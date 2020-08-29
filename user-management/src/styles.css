@@ -22,7 +22,7 @@ a {
 }
 .red-btn {
   color : white;
-  background-color: red;
+  background-color: #F02;
 }
 .grey-btn{
   color : black;
@@ -98,3 +98,6 @@ tr.mat-row:hover {
 th.mat-sort-header-sorted {
   color: black;
 }
+/*.mat-paginator-range-label {*/
+/*  display: none;*/
+/*}*/

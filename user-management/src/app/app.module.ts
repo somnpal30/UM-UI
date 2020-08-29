@@ -20,6 +20,7 @@ import {RejectionDialogComponent} from './users-view-approval/component/common/r
 import {ConfirmationDialogComponent} from './users-view-approval/component/common/confirmation-dialog/confirmation-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule} from "@angular/forms";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -45,12 +46,14 @@ import {FormsModule} from "@angular/forms";
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [
-    MatSortModule
+    MatSortModule,
+
   ]
 })
 export class AppModule {
