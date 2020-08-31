@@ -7,9 +7,9 @@ import {RemotedataService} from "../../service/remotedata.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSort} from "@angular/material/sort";
 import {MatDialog} from "@angular/material/dialog";
-import {RejectionDialogComponent} from "../common/rejection-dialog/rejection-dialog.component";
+import {RejectionDialogComponent} from "../shared/rejection-dialog/rejection-dialog.component";
 import {EventStoreService} from "../../service/event-store.service";
-import {ConfirmationDialogComponent} from "../common/confirmation-dialog/confirmation-dialog.component";
+import {ConfirmationDialogComponent} from "../shared/confirmation-dialog/confirmation-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 

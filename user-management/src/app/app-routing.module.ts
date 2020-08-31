@@ -27,4 +27,4 @@ export class AppRoutingModule {
 }
 
 
-export const RoutingComponent = [UserComponent, UserViewComponent, UserApprovalComponent, UserSubmissionComponent];
+export const RoutingComponent = [];
