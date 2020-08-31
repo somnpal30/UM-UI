@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EventStoreService} from "../../../service/event-store.service";
+import {EventStoreService} from '../../../service/event-store.service';
 
 @Component({
   selector: 'filter-dropdown',

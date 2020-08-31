@@ -1,16 +1,17 @@
 import {SelectionModel} from '@angular/cdk/collections';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
-import {MatTableDataSource} from "@angular/material/table";
-import {ApprovalList} from "../../model/approval-list";
-import {RemotedataService} from "../../service/remotedata.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {MatSort} from "@angular/material/sort";
-import {MatDialog} from "@angular/material/dialog";
-import {RejectionDialogComponent} from "../shared/rejection-dialog/rejection-dialog.component";
-import {EventStoreService} from "../../service/event-store.service";
-import {ConfirmationDialogComponent} from "../shared/confirmation-dialog/confirmation-dialog.component";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {ApprovalList} from '../../model/approval-list';
+import {RemotedataService} from '../../service/remotedata.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatSort} from '@angular/material/sort';
+import {MatDialog} from '@angular/material/dialog';
+import {RejectionDialogComponent} from '../shared/rejection-dialog/rejection-dialog.component';
+import {EventStoreService} from '../../service/event-store.service';
+import {ConfirmationDialogComponent} from '../shared/confirmation-dialog/confirmation-dialog.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -18,7 +19,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   templateUrl: './user-approval.component.html',
   styleUrls: ['./user-approval.component.css']
 })
-export class UserApprovalComponent implements OnInit {
+export class UserApprovalComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -31,7 +32,7 @@ export class UserApprovalComponent implements OnInit {
   comment: string = "";
   selectedFilterValue = ""
 
-  pageLength;
+  subscription : Subscription;
 
   constructor(private dataService: RemotedataService,
               private route: ActivatedRoute,
@@ -41,9 +42,12 @@ export class UserApprovalComponent implements OnInit {
               private eventStoreService: EventStoreService) {
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
-    this.eventStoreService.clickEventListener().subscribe(info => {
+   this.subscription =  this.eventStoreService.clickEventListener().subscribe(info => {
       //console.log(info)
       if(info !== this.options[0]){
         this.selectedFilterValue = info

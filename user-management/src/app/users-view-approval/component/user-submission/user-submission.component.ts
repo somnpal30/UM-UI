@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-user-submission',
