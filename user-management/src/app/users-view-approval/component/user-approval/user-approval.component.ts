@@ -44,7 +44,7 @@ export class UserApprovalComponent implements OnInit {
 
   ngOnInit() {
     this.eventStoreService.clickEventListener().subscribe(info => {
-      console.log(info)
+      //console.log(info)
       if(info !== this.options[0]){
         this.selectedFilterValue = info
       }else {
