@@ -10,7 +10,7 @@ import {UserApprovalComponent} from './user-approval.component';
     SharedModule
   ],
   exports: [
-    UserApprovalComponent
+    //UserApprovalComponent
   ]
 })
 
