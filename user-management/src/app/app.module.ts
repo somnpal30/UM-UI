@@ -10,11 +10,12 @@ import {UserViewComponent} from './users-view-approval/component/user-view/user-
 import {UserSubmissionComponent} from './users-view-approval/component/user-submission/user-submission.component';
 import {MatUiModule} from './mat-ui.module';
 import {UserApprovalModule} from './users-view-approval/component/user-approval/user-approval.module';
+import {UserSubmissionModule} from './users-view-approval/component/user-submission/user-submission.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent, UserViewComponent, UserSubmissionComponent
+    UserComponent, UserViewComponent,
   ],
   imports: [
     HttpClientModule,
@@ -22,7 +23,8 @@ import {UserApprovalModule} from './users-view-approval/component/user-approval/
     AppRoutingModule,
     BrowserAnimationsModule,
     MatUiModule,
-    UserApprovalModule
+    UserApprovalModule,
+    UserSubmissionModule
   ],
   providers: [],
   bootstrap: [AppComponent],
