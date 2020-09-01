@@ -7,32 +7,50 @@
   </div>
 </div>
 <div class="mat-elevation-z8 container">
-  <table mat-table [dataSource]="dataSource" matSort>
-  <!--  <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[0]}} </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-    <ng-container matColumnDef="contact_number">
-      <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[1]}} </th>
-      <td mat-cell *matCellDef="let element"> {{element.contact_number}} </td>
-    </ng-container>
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[1]}} </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-    </ng-container>
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[1]}} </th>
-      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-    </ng-container>
-    <ng-container matColumnDef="created_on">
-      <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[1]}} </th>
-      <td mat-cell *matCellDef="let element"> {{element.created_on}} </td>
-    </ng-container>-->
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
     <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns, let i = index">
       <th mat-header-cell *matHeaderCellDef> {{displayedColumnValue[i]}} </th>
       <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td class="nopadding-td" mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+
+        <div class="element-detail row" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="col-2">
+            <div class="element-description-attribution"> Full Name </div>
+            <div class="element-position"> <b>{{element.details.full_name}} </b></div>
+          </div>
+          <div class="col-2">
+            <div class="element-description-attribution"> Login ID </div>
+            <div class="element-position"><b>{{element.details.login}}</b>  </div>
+          </div>
+          <div class="col-2">
+            <div class="element-description-attribution"> Security </div>
+            <div class="element-position"><b>{{element.details.security}}</b>  </div>
+          </div>
+          <div class="col-2">
+            <div class="element-description-attribution"> Segment </div>
+            <div class="element-position"><b>{{element.details.segment}}</b>  </div>
+          </div>
+          <div class="col-2">
+            <div class="element-description-attribution"> Regulatory </div>
+            <div class="element-position"><b>{{element.details.regulatory}}</b>  </div>
+          </div>
+          <div class="col-2">
+            <div class="element-description-attribution"> Marketing </div>
+            <div class="element-position"><b>{{element.details.marketing}}</b>  </div>
+          </div>
+        </div>
+       <div class="element-detail row" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="col-2 element-position"><button mat-button  class="round-btn red-btn-1">VIEW DETAILS</button></div>
+         <div class="col-2 element-position"><button mat-button class="round-btn  red-btn-2">WITHDRAW</button></div>
+      </div>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" (click)="expandedElement = expandedElement === element ? null : element"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row noBorder"></tr>
   </table>
 </div>

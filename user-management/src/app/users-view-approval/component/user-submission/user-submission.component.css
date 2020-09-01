@@ -1,11 +1,75 @@
-.example-panel-red.mat-select-panel {
-  background: rgba(255, 0, 0, 0.5);
+
+tr.detail-row {
+  height: 0;
+  border-width: 0px;
+
+}
+tr.noBorder td {
+  border: 0;
 }
 
-.example-panel-green.mat-select-panel {
-  background: rgba(0, 255, 0, 0.5);
+tr.detail-row:hover{
+  background-color: white;
 }
 
-.example-panel-blue.mat-select-panel {
-  background: rgba(0, 0, 255, 0.5);
+tr.element-row:not(.expanded-row):hover {
+  background-color: white;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+  border-color: white;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+  background-color: #FFFFFF;
+}
+
+.element-description {
+  padding: 16px;
+  width: 17%;
+}
+
+.element-description-attribution {
+  opacity: 0.5;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+
+.element-position {
+  /*opacity: 0.8;*/
+  padding-bottom: 20px;
+}
+
+b {
+  border-bottom: 3px solid aquamarine;
+  padding: 0 0 4px;
+
+}
+
+.round-btn{
+  border-radius: 25px !important;
+  color : #F02;
+  border: 1px solid;
+}
+.red-btn-1 {
+  background-color: white;
+  border-color: lightgray;
+}
+.red-btn-2 {
+  background-color: #fff1f3;
+  border-color: pink;
+}
+
+.nopadding-td {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
