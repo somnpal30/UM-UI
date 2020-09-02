@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {RemotedataService} from '../../service/remotedata.service';
 import {Subscription} from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
-import {MyUsersList} from '../../model/my-users-list';
+import {MyUsers} from '../../model/my-users';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 @Component({
   selector: 'app-user-submission',
@@ -20,11 +20,13 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class UserSubmissionComponent implements OnInit, OnDestroy {
 
   options = ['All', 'Submitted', 'Saved', 'Rejected'];
-  displayedColumns: string[] = ['name', 'contact_number', 'email', 'status', 'created_on'];
-  displayedColumnValue: string[] = ['NAME', 'CONTACT NUMBER', 'EMAIL', 'STATUS', 'CREATED ON'];
-  expandedElement: MyUsersList | null;
+  displayedColumns: string[] = ['action','name', 'contact_number', 'email', 'status', 'created_on'];
+  displayedColumnValue: string[] = ['ACTION','NAME', 'CONTACT NUMBER', 'EMAIL', 'STATUS', 'CREATED ON'];
+  expandedElement: MyUsers | null;
   subscription: Subscription;
   dataSource;
+
+  arrowselector:string = 'keyboard_arrow_right'
 
   constructor(private dataService: RemotedataService) {
   }
@@ -37,7 +39,7 @@ export class UserSubmissionComponent implements OnInit, OnDestroy {
     this.dataService.loadMyUserList().subscribe(
       resp => {
        //console.log(resp)
-        this.dataSource = new MatTableDataSource<MyUsersList>(resp);
+        this.dataSource = new MatTableDataSource<MyUsers>(resp);
         /*  setTimeout(() => {
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;

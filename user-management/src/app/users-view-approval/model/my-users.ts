@@ -1,4 +1,4 @@
-export interface MyUsersList {
+export interface MyUsers {
   id: string,
   name: string,
   contact_number: string,
