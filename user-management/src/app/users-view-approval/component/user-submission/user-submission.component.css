@@ -63,6 +63,17 @@ b {
   border-color: pink;
 }
 
+.down-arrow {
+  -webkit-text-fill-color:lightgray;
+  -webkit-box-lines: single;
+}
+
+.up-arrow {
+  -webkit-text-fill-color:red;
+  -webkit-box-lines: single;
+}
+
+
 
 
 
