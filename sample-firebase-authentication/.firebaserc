@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "luigi-firebase-authentication": {
+      "hosting": {
+        "sample-firebase-authentication": [
+          "luigi-firebase-authentication"
+        ]
+      }
+    }
+  }
+}

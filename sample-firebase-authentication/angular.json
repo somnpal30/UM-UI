@@ -117,8 +117,16 @@
               "devServerTarget": "sample-firebase-authentication:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "sample-firebase-authentication"
+    }
+  },
+  "defaultProject": "sample-firebase-authentication",
+  "cli": {
+    "analytics": "b256eb5d-6ecb-4058-8263-aa5841e798de"
+  }
 }
